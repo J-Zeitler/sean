@@ -1,0 +1,20 @@
+{
+  "name": "sean",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jonas",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "express": "^3.5.1",
+    "grunt": "^0.4.4"
+  },
+  "devDependencies": {
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
