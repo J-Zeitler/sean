@@ -6,7 +6,7 @@ angular.module('sean', ['ngRoute'])
     $routeProvider
     .when '/',
       templateUrl: 'partials/feed',
-      controller: 'feedCtrl'
+      controller: 'FeedCtrl'
 
     .otherwise
       redirectTo: '/'
