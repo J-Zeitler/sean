@@ -56,4 +56,4 @@ module.exports = (grunt) ->
         options:
           tasks: ['express']
       
-  grunt.registerTask 'default', ['express', 'watch']
+  grunt.registerTask 'default', ['coffee:compileServer', 'coffee:compileClient', 'express', 'watch']
