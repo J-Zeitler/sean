@@ -1,8 +1,12 @@
 # Grunt utils
 
+# path = require 'path'
+
 module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-rerun'
+  grunt.loadNpmTasks 'grunt-express-server'
 
   grunt.initConfig
     watch:
@@ -14,7 +18,13 @@ module.exports = (grunt) ->
       # watch coffee files in client directory
       serverCoffee:
         files: 'server/scripts/**/*.coffee'
-        tasks: ['coffee:compileServer']
+        tasks: ['coffee:compileServer', 'rerun:dev:express:go']
+
+      express:
+        files: [ 'server/js/**/*.js' ]
+        tasks: [ 'express:dev' ]
+        options:
+          spawn: false 
 
     # compile coffee
     coffee:
@@ -33,5 +43,17 @@ module.exports = (grunt) ->
         src: ['**/*.coffee']
         dest: 'server/js/'
         ext: '.js'
+
+    # run server
+    express:
+      dev:
+        options:
+          script: 'server/js/server.js'
+
+    # rerun server
+    rerun:
+      dev:
+        options:
+          tasks: ['express']
       
-  grunt.registerTask 'default', ['watch']
+  grunt.registerTask 'default', ['express', 'watch']
