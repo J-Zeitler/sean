@@ -10,6 +10,3 @@ angular.module('sean', ['ngRoute'])
 
     .otherwise
       redirectTo: '/'
-
-
-console.log 'app loaded'

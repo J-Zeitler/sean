@@ -11,7 +11,9 @@
   "dependencies": {
     "ejs": "^1.0.0",
     "express": "^3.5.1",
-    "grunt": "^0.4.4"
+    "grunt": "^0.4.4",
+    "mysql": "^2.1.1",
+    "sequelize": "^1.7.0"
   },
   "devDependencies": {
     "grunt-contrib-coffee": "^0.10.1",
