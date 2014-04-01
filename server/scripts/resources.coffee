@@ -7,5 +7,5 @@ module.exports = (app) ->
   require('./users/rest/routes')(app)
 
   # static files
-  # app.get '/partials/*', index.partials
+  app.get '/partials/*', index.partials
   app.get '/*', index.index
