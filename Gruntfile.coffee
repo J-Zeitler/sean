@@ -7,6 +7,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-rerun'
   grunt.loadNpmTasks 'grunt-express-server'
+  grunt.loadNpmTasks 'grunt-mocha-test'
 
   grunt.initConfig
     watch:
@@ -24,7 +25,14 @@ module.exports = (grunt) ->
         files: [ 'server/js/**/*.js' ]
         tasks: [ 'express:dev' ]
         options:
-          spawn: false 
+          spawn: false
+
+    # tests
+    mochaTest:
+      test:
+        options:
+          reporter: 'spec'
+        src: ['test/**/*.js']
 
     # compile coffee
     coffee:
@@ -44,6 +52,14 @@ module.exports = (grunt) ->
         dest: 'server/js/'
         ext: '.js'
 
+      compileTest:
+        expand: true
+        flatten: false # keep directory srtucture on server side
+        cwd: "#{__dirname}/test/scripts/"
+        src: ['**/*.coffee']
+        dest: 'test/js/'
+        ext: '.js'
+
     # run server
     express:
       dev:
@@ -57,3 +73,4 @@ module.exports = (grunt) ->
           tasks: ['express']
       
   grunt.registerTask 'default', ['coffee:compileServer', 'coffee:compileClient', 'express', 'watch']
+  grunt.registerTask 'test', ['coffee:compileServer', 'coffee:compileClient', 'coffee:compileTest', 'mochaTest']
